@@ -1,11 +1,19 @@
+
 <div class="container">
   <header><img src="images/corneal-small.png" class="img-responsive main-image"></header>
   <div class="col-md-8 col-md-offset-2">
     <h2>Sign Up Below</h2>
 
     <div class="content">
+
+      <h3 class="flash">
+          <% if flash.has?(:message) %>
+            <%= flash[:message] %>
+          <% end %>
+      </h3>
+
       <form action="/signup" method="post">
-        <h3>Name:     <input type="text" id="username" name="username"></h3><br>
+        <h3>Name:     <input type="text" id="name" name="name"></h3><br>
         <h3>Username: <input type="text" id="username" name="username"></h3><br>
         <h3>Email:    <input type="email" id="email" name="email"></h3><br>
         <h3>Password: <input type="text" id="password" name="password"></h3><br>

@@ -113,3 +113,8 @@
     line-height: 24px;
   }
 }
+
+/*flash css */
+.flash {
+  color: red;
+}
