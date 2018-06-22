@@ -1,0 +1,23 @@
+<div class="container">
+  <header><img src="images/corneal-small.png" class="img-responsive main-image"></header>
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Login</h2>
+
+    <div class="content">
+
+      <h3 class="flash">
+          <% if flash.has?(:message) %>
+            <%= flash[:message] %>
+          <% end %>
+      </h3>
+
+      <form action="/login" method="POST">
+      	<h3>Username: <input type="text" name="username" placeholder="Username:"></h3><br>
+      	<h3>Password: <input type="password" name="password" placeholder="Password:"></h3><br>
+      	<h3><input type="submit" id="submit" value="Log In"></h3>
+      </form>
+
+    </div>
+
+  </div>
+</div>

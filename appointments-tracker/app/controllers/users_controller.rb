@@ -24,6 +24,21 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
+    if logged_in?
+      redirect '/appointments'
+    else
+      erb :'/users/login'
+    end
+  end
 
+  post '/login' do
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:id] = @user.id
+      redirect '/appointments'
+    else
+      flash[:message] = "Could not find username and/or password!"
+      redirect '/login'
+    end
   end
 end
