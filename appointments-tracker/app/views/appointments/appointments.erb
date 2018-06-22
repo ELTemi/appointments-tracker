@@ -1,1 +1,29 @@
+<div class="container">
+  <header><img src="images/corneal-small.png" class="img-responsive main-image"></header>
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Welcome, <%@user.username%>
+    <h2>All Appointments</h2>
 
+    <div class="content">
+
+      <h3 class="flash">
+          <% if flash.has?(:message) %>
+            <%= flash[:message] %>
+          <% end %>
+      </h3>
+
+      <p><%@user.appointments.each do |appointment|%>
+        <%=appointment.title%>
+        <%=appointment.date%>
+        <%=appointment.location%>
+        <%=appointment.details%>
+        <%=appointment.status%>
+        <%end%>
+      </a><br>
+      <a href="/logout">logout</a>
+      </p>
+
+    </div>
+
+  </div>
+</div>
