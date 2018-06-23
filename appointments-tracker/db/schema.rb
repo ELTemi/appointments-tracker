@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180622171712) do
     t.text     "location"
     t.text     "details"
     t.boolean  "status"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
