@@ -1,0 +1,30 @@
+<div class="container">
+  <header><img src="images/corneal-small.png" class="img-responsive main-image"></header>
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Welcome, <%=@user.username%>
+    <h2>Create a New Appointment</h2>
+
+    <div class="content">
+
+      <h3 class="flash">
+          <% if flash.has?(:message) %>
+            <%= flash[:message] %>
+          <% end %>
+      </h3>
+
+      <form action="/appointments/new" method="post">
+        <h3>Appointment Title: <input type="text" name="title" id="title"></h3>
+        <h3>Appointment Date: <input type="text" name="date" id="date"></h3>
+        <h3>Appointment Location: <input type="text" name="location" id="location"></h3>
+        <h3>Appointment Details: <input type="text" name="details" id="details"></h3>
+        <h3>Appointment Status: <label>Complete<input type="checkbox" name="status" id="status"></label></h3>
+        <input type="submit" value="Submit">
+      </form>
+
+      <p><a href="/logout">Logout</a></p>
+      </p>
+
+    </div>
+
+  </div>
+</div>
