@@ -4,6 +4,11 @@ class UsersController < ApplicationController
 
   use Rack::Flash
 
+  get '/users/:slug' do
+    @user = User.find_by_id(params[:slug])
+    erb :'/users/account'
+  end
+
   get '/signup' do
     if logged_in?
       redirect "/appointments"
@@ -51,9 +56,5 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/users/:id' do
-    @user = User.find_by_id(params[:id])
-    @user.appointments
-    erb :'/users/account'
-  end
+
 end

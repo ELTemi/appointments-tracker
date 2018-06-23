@@ -6,7 +6,6 @@ use Rack::Flash
 
   get '/appointments' do
     if logged_in?
-      @user = current_user
       @appointments = Appointment.all
       erb :'/appointments/appointments'
     else
@@ -17,17 +16,16 @@ use Rack::Flash
 
   get '/appointments/new' do
     if logged_in?
-      @user = current_user
       erb :'/appointments/create_appointment'
     else
       redirect "/users/login"
     end
   end
 
-  post '/appointments/new' do
+  post '/appointments' do
     if !params.empty?
       @appointment = Appointment.create(params)
-      @user = current_user
+      @user.id = current_user.id
       @appointment.user_id = @user.id
       current_user.appointments << @appointment
       current_user.save

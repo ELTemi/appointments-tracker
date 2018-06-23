@@ -2,7 +2,7 @@ class Appointments < ActiveRecord::Migration
   def change
     create_table :appointments do |t|
       t.string :title
-      t.datetime :date
+      t.string :date
       t.text :location
       t.text :details
       t.boolean :status
