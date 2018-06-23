@@ -27,5 +27,8 @@ appointments_list = {
 appointments_list.each do |title, appointment_hash|
   p = Appointment.new
   p.title = title
+  appointment_hash.each do |attribute, value|
+      p[attribute] = value
+  end
   p.save
 end

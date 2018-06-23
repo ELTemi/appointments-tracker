@@ -1,7 +1,7 @@
 <div class="container">
   <header><img src="images/corneal-small.png" class="img-responsive main-image"></header>
   <div class="col-md-8 col-md-offset-2">
-    <h1>Welcome, <%@user.username%>
+    <h1>Welcome, <%=@user.username%>
     <h2>All Appointments</h2>
 
     <div class="content">
@@ -12,15 +12,17 @@
           <% end %>
       </h3>
 
-      <p><%@user.appointments.each do |appointment|%>
-        <%=appointment.title%>
-        <%=appointment.date%>
-        <%=appointment.location%>
-        <%=appointment.details%>
-        <%=appointment.status%>
-        <%end%>
-      </a><br>
-      <a href="/logout">logout</a>
+      <%@appointments.each do |appointment|%>
+        <p>Title: <%=appointment.title%></p>
+        <p>Date: <%=appointment.date%></p>
+        <p>Where: <%=appointment.location%></p>
+        <p>More details: <%=appointment.details%></p>
+        <p>Status:
+          <%=appointment.status %>
+        </p>
+      <%end%>
+
+      <a href="/logout">Logout</a>
       </p>
 
     </div>
