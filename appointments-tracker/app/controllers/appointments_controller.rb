@@ -7,7 +7,7 @@ use Rack::Flash
   get '/appointments' do
     if logged_in?
       valid_login
-      @appointments = Appointment.all
+      @appointments = current_user.appointments
       erb :'/appointments/appointments'
     else
       flash[:message] = "Please login to view appointments"
