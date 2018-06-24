@@ -20,10 +20,9 @@ use Rack::Flash
       valid_login
       erb :'/appointments/create_appointment'
     else
+      flash[:message] = "Please login to create an appointment"
       redirect "/users/login"
     end
-
-
   end
 
   post '/appointments' do
@@ -40,6 +39,7 @@ use Rack::Flash
         redirect to "/appointments/new"
       end
     else
+      flash[:message] = "Please login to view appointments"
       redirect to "/login"
     end
   end
@@ -50,6 +50,7 @@ use Rack::Flash
       @appointment = Appointment.find_by_id(params[:id])
       erb :'appointments/show_appointment'
     else
+      flash[:message] = "Please login to view appointments"
       redirect to "/login"
     end
   end
@@ -61,9 +62,11 @@ use Rack::Flash
       if @appointment && @appointment.user == current_user
         erb :'/appointments/edit_appointment'
       else
+        flash[:message] = "You can only edit your appointments"
         redirect to '/appointments'
       end
     else
+      flash[:message] = "Please login to edit appointments"
       redirect to "/login"
     end
   end
@@ -78,12 +81,15 @@ use Rack::Flash
           if @appointment.update(title: params[:title], date: params[:date], location: params[:location], details: params[:details], status: params[:status])
             redirect to "/appointments/#{@appointment.id}"
           else
+            flash[:message] = "No valid changes have been made to appointment"
             redirect to "/appointments/#{@appointment.id}/edit"
           end
         else
+          flash[:message] = "You can only edit your appointments"
           redirect to '/appointments'
         end
       end
+      flash[:message] = "Please login to make changes to appointments"
       redirect to '/login'
     end
   end
@@ -96,6 +102,7 @@ use Rack::Flash
       end
       redirect to '/appointments'
     else
+      flash[:message] = "Please login to delete appointments"
       redirect to '/login'
     end
   end

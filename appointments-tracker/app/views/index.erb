@@ -3,6 +3,12 @@
   <div class="col-md-8 col-md-offset-2">
     <h2>Welcome to Appointments Tracker app</h2>
 
+    <h3 class="flash">
+        <% if flash.has?(:message) %>
+          <%= flash[:message] %>
+        <% end %>
+    </h3>
+
     <div class="content">
       <h3><a href="/signup">Create an account</a></h3>
       <h3><a href="/login">Log In</a></h3>

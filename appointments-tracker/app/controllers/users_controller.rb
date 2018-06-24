@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
+      flash[:message] = "You are already logged in"
       redirect '/appointments'
     else
       erb :'/users/login'
@@ -52,6 +53,7 @@ class UsersController < ApplicationController
       session.clear
       redirect '/login'
     else
+      flash[:message] = "You are already logged out"
       redirect '/'
     end
   end
