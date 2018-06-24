@@ -6,7 +6,7 @@ use Rack::Flash
 
   get '/appointments' do
     if logged_in?
-      @user = current_user
+      valid_login
       @appointments = Appointment.all
       erb :'/appointments/appointments'
     else
@@ -17,7 +17,7 @@ use Rack::Flash
 
   get '/appointments/new' do
     if logged_in?
-      @user = current_user
+      valid_login
       erb :'/appointments/create_appointment'
     else
       redirect "/users/login"
@@ -30,7 +30,7 @@ use Rack::Flash
     @appointment = Appointment.new(params)
     if logged_in?
       @appointment = Appointment.create(title: params[:title], date: params[:date], location: params[:location], details: params[:details], status: params[:status])
-      @user = current_user
+      valid_login
       @appointment.user_id = @user.id
       current_user.appointments << @appointment
       current_user.save
@@ -46,7 +46,7 @@ use Rack::Flash
 
   get '/appointments/:id' do
     if logged_in?
-      @user = current_user
+      valid_login
       @appointment = Appointment.find_by_id(params[:id])
       erb :'appointments/show_appointment'
     else

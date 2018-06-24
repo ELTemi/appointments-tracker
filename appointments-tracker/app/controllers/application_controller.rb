@@ -21,7 +21,13 @@ class ApplicationController < Sinatra::Base
 		def current_user
 			current_user ||=User.find(session[:id])
 		end
+
+    def valid_login
+      @user = current_user
+    end
 	end
+
+
 
 
 end
