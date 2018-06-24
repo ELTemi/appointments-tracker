@@ -46,6 +46,7 @@ use Rack::Flash
 
   get '/appointments/:id' do
     if logged_in?
+      @user = current_user
       @appointment = Appointment.find_by_id(params[:id])
       erb :'appointments/show_appointment'
     else
