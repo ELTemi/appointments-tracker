@@ -88,4 +88,16 @@ use Rack::Flash
     end
   end
 
+  patch '/appointments/:id/delete' do
+    if logged_in?
+      @appointment = Appointment.find_by_id(params[:id])
+      if @appointment && @appointment.user_id == current_user.id
+        @appointment.delete
+      end
+      redirect to '/appointments'
+    else
+      redirect to '/login'
+    end
+  end
+
 end
