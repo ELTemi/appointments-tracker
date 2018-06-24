@@ -1,4 +1,5 @@
 <div class="container">
+  <header><img src="images/recall-logo.jpg" class="img-responsive main-image"></header>
   <div class="col-md-8 col-md-offset-2">
     <h1>Welcome, <%=@user.username%>
     <h2>Appointment Details</h2>
@@ -12,23 +13,20 @@
       </h3>
 
       <p>
-        <h3>Appointment Title: <%=@appointment.title%></h3>
-        <h3>Appointment Date: <%=@appointment.date%></h3>
-        <h3>Appointment Location: <%=@appointment.location%></h3>
-        <h3>Appointment Details: <%=@appointment.details%></h3>
-        <h3>Appointment Status: <%=@appointment.status%></h3>
+        <h3>Title: <%=@appointment.title%></h3>
+        <h3>Date: <%=@appointment.date%></h3>
+        <h3>Location: <%=@appointment.location%></h3>
+        <h3>Details: <%=@appointment.details%></h3>
+        <h3>Status: <%=@appointment.status%></h3>
       </p>
 
       <form method="post" action="/appointments/<%=@appointment.id%>/delete">
         <input id="hidden" type="hidden" name="_method" value="delete">
 
         <input type="submit" value="Delete Appointment">
-      <form>
+      <form><br>
 
-        <form method="post" action="/appointments/<%=@appointment.id%>/edit">
-          <input id="hidden" type="hidden" name="_method" value="patch">
-          <input type="submit" value="Edit Appointment">
-        </form>
+        <a href="/appointments/<%=@appointment.id%>/edit">Edit Appointment </a>
 
       <h3><a href="/appointments">See All appointments</a></h3> <br>
 

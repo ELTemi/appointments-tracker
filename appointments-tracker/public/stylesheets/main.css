@@ -118,3 +118,18 @@
 .flash {
   color: red;
 }
+
+img, video, audio, iframe, table{
+  width: 100%; /* IE */
+  max-width: 100%; /* FF, Safari, Chrome */
+}
+
+.wood_background {
+  background: url(../images/rawpixel-632456-unsplash.jpg) no-repeat center top;
+  background-size: cover;
+}
+
+div div div div.formlabel {
+  display: block;
+  position: center;
+}
