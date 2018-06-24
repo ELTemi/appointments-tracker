@@ -54,4 +54,38 @@ use Rack::Flash
     end
   end
 
+  get '/appointments/:id/edit' do
+    if logged_in?
+      valid_login
+      @appointment = Appointment.find_by_id(params[:id])
+      if @appointment && @appointment.user == current_user
+        erb :'/appointments/edit_appointment'
+      else
+        redirect to '/appointments'
+      end
+    else
+      redirect to "/login"
+    end
+  end
+
+  patch '/appointments/:id' do
+    if logged_in?
+      if params[:title] == "" || params[:date] == "" || params[:location] == "" || params[:details] == ""
+        redirect to "/appointments/#{@params.id}/edit"
+      else
+        @appointment = Appointment.find_by_id(params[:id])
+        if @appointment && @appointment.user_id == current_user.id
+          if @appointment.update(title: params[:title], date: params[:date], location: params[:location], details: params[:details], status: params[:status])
+            redirect to "/appointments/#{@appointment.id}"
+          else
+            redirect to "/appointments/#{@appointment.id}/edit"
+          end
+        else
+          redirect to '/appointments'
+        end
+      end
+      redirect to '/login'
+    end
+  end
+
 end

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Welcome, <%=@user.username%>
+    <h2>Edit Your Appointment</h2>
+
+    <div class="content">
+
+      <h3 class="flash">
+          <% if flash.has?(:message) %>
+            <%= flash[:message] %>
+          <% end %>
+      </h3>
+
+      <form method="post" action="/appointments/<%=@appointment.id%>">
+        <input id="hidden" type="hidden" name="_method" value="patch">
+        <h3>Appointment Title: <input type="text" name="title" id="title" value="<%=@appointment.title%>"></h3>
+        <h3>Appointment Date: <input type="text" name="date" id="date" value="<%=@appointment.date%>"></h3>
+        <h3>Appointment Location: <input type="text" name="location" id="location" value="<%=@appointment.location%>"></h3>
+        <h3>Appointment Details: <input type="text" name="details" id="details" value="<%=@appointment.details%>"></h3>
+        <h3>Appointment Status: <label>Complete<input type="checkbox" name="status" id="status" value="<%=@appointment.status%>"></label></h3>
+        <input type="submit" value="Submit">
+      </form>
+
+      <p><a href="/logout">Logout</a></p>
+      </p>
+
+    </div>
+
+  </div>
+</div>
