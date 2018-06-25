@@ -15,7 +15,7 @@
       <form method="post" action="/appointments/<%=@appointment.id%>">
         <input id="hidden" type="hidden" name="_method" value="patch">
         <h3>Title: <input type="text" name="title" id="title" value="<%=@appointment.title%>"></h3>
-        <h3>Date: <input type="text" name="date" id="date" value="<%=@appointment.date%>"></h3>
+        <h3>Date: <input type="date" name="date" id="date" value="<%=@appointment.date%>"></h3>
         <h3>Location: <input type="text" name="location" id="location" value="<%=@appointment.location%>"></h3>
         <h3>Details: <input type="text" name="details" id="details" value="<%=@appointment.details%>"></h3>
         <input type="submit" value="Submit">
