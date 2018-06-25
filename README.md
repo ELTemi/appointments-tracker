@@ -6,7 +6,11 @@ The Recall Sinatra app is a Sinatra based application that will enable you to cr
 ## Installation
 Add this line to your application's Gemfile:
 
-$ Download and Clone this application
+Download and Clone this application
+
+$ git clone https://github.com/ELTemi/recall-sinatra-app.git
+
+$ cd appointments-tracker
 
 $ bundle install
 
