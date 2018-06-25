@@ -1,9 +1,7 @@
 <div class="container">
-  <header><img src="images/recall-logo.jpg" class="img-responsive main-image"></header>
   <div class="col-md-8 col-md-offset-2">
     <h1>Welcome, <%=@user.username%>
     <h2>Appointment Details</h2>
-
     <div class="content">
 
       <h3 class="flash">
@@ -21,17 +19,16 @@
 
       <form method="post" action="/appointments/<%=@appointment.id%>/delete">
         <input id="hidden" type="hidden" name="_method" value="delete">
-
         <input type="submit" value="Delete Appointment">
-      <form><br>
+      <form>
+    </div>
 
-        <a href="/appointments/<%=@appointment.id%>/edit">Edit Appointment </a>
+    <div class="">
+      <h4><a href="/appointments/<%=@appointment.id%>/edit">Edit Appointment </a></h4><br>
 
-      <h3><a href="/appointments">See All appointments</a></h3> <br>
+      <h4><a href="/appointments">See All appointments</a></h4><br>
 
-      <p><a href="/logout">Logout</a></p>
-      </p>
-
+      <h4><a href="/logout">Logout</a></h4><br>
     </div>
 
   </div>
