@@ -28,9 +28,8 @@ use Rack::Flash
   post '/appointments' do
     @appointment = Appointment.new(params)
     if logged_in?
-      @appointment = Appointment.create(title: params[:title], date: params[:date], location: params[:location], details: params[:details], status: params[:status])
       valid_login
-      @appointment.user_id = @user.id
+      @appointment = Appointment.create(title: params[:title], date: params[:date], location: params[:location], details: params[:details], status: params[:status])
       current_user.appointments << @appointment
       current_user.save
       if @appointment.save

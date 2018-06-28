@@ -1,3 +1,8 @@
+<h3 class="flash">
+    <% if flash.has?(:message) %>
+      <%= flash[:message] %>
+    <% end %>
+</h3>
 
 <div class="container">
   <header><img src="images/recall-logo.jpg" class="img-responsive main-image"></header>
@@ -5,12 +10,6 @@
     <h2>Sign Up Below</h2>
 
     <div class="content">
-
-      <h3 class="flash">
-          <% if flash.has?(:message) %>
-            <%= flash[:message] %>
-          <% end %>
-      </h3>
 
       <form class="formlabel" action="/signup" method="post">
         <h3>Name:     <br><input required type="text" id="name" name="name"></h3><br>

@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect "/appointments"
     else
+      flash[:message] = "Either username/name/email already exists. Please try again!"
       erb :'/users/create_user'
     end
   end
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
       session[:id] = @user.id
       redirect :'/appointments'
     else
-      flash[:message] = "Either username/name/email already exists. Please try again!"
       redirect :'/signup'
     end
   end
@@ -33,6 +33,7 @@ class UsersController < ApplicationController
       flash[:message] = "You are already logged in"
       redirect '/appointments'
     else
+      flash[:message] = "Could not find username and/or password!"
       erb :'/users/login'
     end
   end
@@ -43,7 +44,6 @@ class UsersController < ApplicationController
       session[:id] = @user.id
       redirect '/appointments'
     else
-      flash[:message] = "Could not find username and/or password!"
       redirect '/login'
     end
   end
