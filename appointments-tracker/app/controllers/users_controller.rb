@@ -4,16 +4,10 @@ class UsersController < ApplicationController
 
   use Rack::Flash
 
-  get '/users/:slug' do
-    @user = User.find_by_id(params[:slug])
-    erb :'/users/account'
-  end
-
   get '/signup' do
     if logged_in?
       redirect "/appointments"
     else
-      flash[:message] = "Either username/name/email already exists. Please try again!"
       erb :'/users/create_user'
     end
   end
@@ -24,7 +18,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect '/appointments'
     else
-      redirect '/signup'
+      flash[:message] = "Either username/name/email already exists. Please try again!"
+      erb :'/users/create_user'
     end
   end
 
@@ -36,7 +31,7 @@ class UsersController < ApplicationController
       redirect '/appointments'
     else
       flash[:message] = "Could not find username and/or password!"
-      redirect '/login'
+      erb :'/users/login'
     end
   end
 
