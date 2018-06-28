@@ -28,10 +28,10 @@ use Rack::Flash
   post '/appointments' do
     if logged_in?
       valid_login
-      @appointment = Appointment.new(title: params[:title], date: params[:date], location: params[:location], details: params[:details], status: params[:status])
-      current_user.appointments << @appointment
-      if @appointment.save
-        redirect to "/appointments/#{@appointment.id}"
+      @appointment = @user.appointments.build([title: params[:title], date: params[:date], location: params[:location], details: params[:details], status: params[:status]])
+      @user.save
+      if @user.save
+        redirect to "/appointments/#{@appointment.first.id}"
       else
         redirect to "/appointments/new"
       end
