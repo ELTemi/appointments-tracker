@@ -21,10 +21,23 @@ class UsersController < ApplicationController
   post '/signup' do
     @user = User.new(params)
     if @user.save
-      session[:id] = @user.id
-      redirect :'/appointments'
+      session[:user_id] = @user.id
+      redirect '/appointments'
     else
-      redirect :'/signup'
+      redirect '/signup'
+    end
+  end
+
+
+
+  post '/login' do
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect '/appointments'
+    else
+      flash[:message] = "Could not find username and/or password!"
+      redirect '/login'
     end
   end
 
@@ -33,18 +46,7 @@ class UsersController < ApplicationController
       flash[:message] = "You are already logged in"
       redirect '/appointments'
     else
-      flash[:message] = "Could not find username and/or password!"
       erb :'/users/login'
-    end
-  end
-
-  post '/login' do
-    @user = User.find_by(username: params[:username])
-    if @user && @user.authenticate(params[:password])
-      session[:id] = @user.id
-      redirect '/appointments'
-    else
-      redirect '/login'
     end
   end
 

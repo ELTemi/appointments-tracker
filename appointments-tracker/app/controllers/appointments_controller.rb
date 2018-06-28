@@ -26,12 +26,10 @@ use Rack::Flash
   end
 
   post '/appointments' do
-    @appointment = Appointment.new(params)
     if logged_in?
       valid_login
-      @appointment = Appointment.create(title: params[:title], date: params[:date], location: params[:location], details: params[:details], status: params[:status])
+      @appointment = Appointment.new(title: params[:title], date: params[:date], location: params[:location], details: params[:details], status: params[:status])
       current_user.appointments << @appointment
-      current_user.save
       if @appointment.save
         redirect to "/appointments/#{@appointment.id}"
       else
@@ -72,8 +70,8 @@ use Rack::Flash
 
   patch '/appointments/:id' do
     if logged_in?
-      if params[:title] == "" || params[:date] == "" || params[:location] == "" || params[:details] == ""
-        redirect to "/appointments/#{@params.id}/edit"
+      if params[:title] == "" || params[:date] == "" || params[:location] == ""
+        redirect to "/appointments/#{params[:id]}/edit"
       else
         @appointment = Appointment.find_by_id(params[:id])
         if @appointment && @appointment.user_id == current_user.id

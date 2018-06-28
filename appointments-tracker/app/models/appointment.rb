@@ -1,5 +1,4 @@
 class Appointment < ActiveRecord::Base
-  validates_presence_of :title, :date, :location, :details
-  validates_uniqueness_of :title
+  validates_presence_of :title, :date, :location
   belongs_to :user
 end
